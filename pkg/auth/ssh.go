@@ -20,6 +20,10 @@ type SSHAuthFunc func(ctx ssh.Context, password, publicKey string) (res sshd.Aut
 
 func SSHPasswordAndPublicKeyAuth(jmsService *service.JMService) SSHAuthFunc {
 	return func(ctx ssh.Context, password, publicKey string) (res sshd.AuthStatus) {
+		if password == "" && publicKey == "" {
+			logger.Errorf("SSH conn[%s] no password and public key", ctx.SessionID())
+			return sshd.AuthFailed
+		}
 		remoteAddr, _, _ := net.SplitHostPort(ctx.RemoteAddr().String())
 		username := ctx.User()
 		if req, ok := parseDirectLoginReq(jmsService, ctx); ok {
@@ -37,25 +41,22 @@ func SSHPasswordAndPublicKeyAuth(jmsService *service.JMService) SSHAuthFunc {
 		if password != "" {
 			authMethod = "password"
 		}
-		userAuthClient, ok := ctx.Value(ContextKeyClient).(*UserAuthClient)
-		if !ok {
-			newClient := jmsService.CloneClient()
-			var accessKey model.AccessKey
-			conf := config.GetConf()
-			_ = accessKey.LoadFromFile(conf.AccessKeyFilePath)
-			userClient := service.NewUserClient(
-				service.UserClientUsername(username),
-				service.UserClientRemoteAddr(remoteAddr),
-				service.UserClientLoginType("T"),
-				service.UserClientHttpClient(&newClient),
-				service.UserClientSvcSignKey(accessKey),
-			)
-			userAuthClient = &UserAuthClient{
-				UserClient:  userClient,
-				authOptions: make(map[string]authOptions),
-			}
-			ctx.SetValue(ContextKeyClient, userAuthClient)
+		newClient := jmsService.CloneClient()
+		var accessKey model.AccessKey
+		conf := config.GetConf()
+		_ = accessKey.LoadFromFile(conf.AccessKeyFilePath)
+		userClient := service.NewUserClient(
+			service.UserClientUsername(username),
+			service.UserClientRemoteAddr(remoteAddr),
+			service.UserClientLoginType("T"),
+			service.UserClientHttpClient(&newClient),
+			service.UserClientSvcSignKey(accessKey),
+		)
+		userAuthClient := &UserAuthClient{
+			UserClient:  userClient,
+			authOptions: make(map[string]authOptions),
 		}
+		ctx.SetValue(ContextKeyClient, userAuthClient)
 		userAuthClient.SetOption(service.UserClientPassword(password),
 			service.UserClientPublicKey(publicKey))
 		logger.Infof("SSH conn[%s] authenticating user %s %s", ctx.SessionID(), username, authMethod)
