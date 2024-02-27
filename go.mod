@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/Azure/azure-storage-blob-go v0.6.0
 	github.com/ClickHouse/clickhouse-go v1.5.4
-	github.com/LeeEirc/elfinder v0.0.14
+	github.com/LeeEirc/elfinder v0.0.15-0.20240227073229-b2fa03bd57ef
 	github.com/LeeEirc/httpsig v1.2.1
 	github.com/LeeEirc/tclientlib v0.0.3-0.20230803101925-fb52a90cb08d
 	github.com/LeeEirc/terminalparser v0.0.0-20220328021224-de16b7643ea4

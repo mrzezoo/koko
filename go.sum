@@ -61,8 +61,8 @@ github.com/ClickHouse/clickhouse-go v1.5.4 h1:cKjXeYLNWVJIx2J1K6H2CqyRmfwVJVY1OV
 github.com/ClickHouse/clickhouse-go v1.5.4/go.mod h1:EaI/sW7Azgz9UATzd5ZdZHRUhHgv5+JMS9NSr2smCJI=
 github.com/LeeEirc/crypto v0.0.0-20230919154755-059031d26b68 h1:bkeuW/ujHp3Rr1K3Ah4/Onw9Ero9uMKX0rPxbzV5mvw=
 github.com/LeeEirc/crypto v0.0.0-20230919154755-059031d26b68/go.mod h1:pYwdfH91IfpZVANVyUOhSIPZaFoJGxTFbZhFTx+dXZU=
-github.com/LeeEirc/elfinder v0.0.14 h1:6ObxwIoC5zmrnKArUU5Mz++/T3lzgl1Ja0pS1Smd3j4=
-github.com/LeeEirc/elfinder v0.0.14/go.mod h1:d1bMAAydkZSBxSN/EuQjBg6B0xcPP3boHuYEpzEHYTs=
+github.com/LeeEirc/elfinder v0.0.15-0.20240227073229-b2fa03bd57ef h1:LIv/W2JFN0tkPBe7+VhKZaJKT9r2GLwhhU95Mu/VcP0=
+github.com/LeeEirc/elfinder v0.0.15-0.20240227073229-b2fa03bd57ef/go.mod h1:d1bMAAydkZSBxSN/EuQjBg6B0xcPP3boHuYEpzEHYTs=
 github.com/LeeEirc/httpsig v1.2.1 h1:GGmCc2Bug3KeCchlZHwrfyjyAnw+JlzMjKDobPypirs=
 github.com/LeeEirc/httpsig v1.2.1/go.mod h1:aoLZLXCSNDgkzsH2sGLWn3hlVbF+Voe8fCArxLt9nWA=
 github.com/LeeEirc/ssh v0.1.2-0.20231007053448-a6110c0dfc4a h1:/EdJeCK6cTaKNgftQLP9uyBL4Q86MFawU0WsK22yn2A=
