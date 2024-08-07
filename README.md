@@ -1,4 +1,4 @@
-
+ssh
 # KoKo
 
 Koko 是 JumpServer 连接字符协议的终端组件，支持 SSH、TELNET、MySQL、Redis 等协议。
